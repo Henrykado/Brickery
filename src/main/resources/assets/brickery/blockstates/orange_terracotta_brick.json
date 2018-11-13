@@ -3,7 +3,7 @@
     "defaults": {
         "model": "cube_all",
         "textures": {
-            "all": "brickery:blocks/mixed_cobble"
+            "all": "brickery:blocks/orange_terracotta_brick"
         }
     },
     "variants": {
