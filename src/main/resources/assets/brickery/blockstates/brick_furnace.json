@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube",
+        "textures": {
+            "front": "brickery:blocks/brick_furnace",
+             "side": "brickery:blocks/brick_furnace_side",
+              "top": "brickery:blocks/brick_furnace_top"
+        }
+    },
+    "variants": {
+        "facing=north": { "model": "brick_furnace" },
+        "facing=south": { "model": "brick_furnace", "y": 180 },
+        "facing=west":  { "model": "brick_furnace", "y": 270 },
+        "facing=east":  { "model": "brick_furnace", "y": 90 },
+  
+        "inventory": [{}]
+    }
+}

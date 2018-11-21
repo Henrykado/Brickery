@@ -1,3 +1,4 @@
+/*
 package com.beeshroom.brickery.items.tools;
 
 import com.beeshroom.brickery.Main;
@@ -37,3 +38,4 @@ public class ToolSword extends ItemSword implements IHasModel {
 
 
 }
+*/

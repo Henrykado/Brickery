@@ -1,3 +1,4 @@
+/*
 package com.beeshroom.brickery.items.food;
 
 import com.beeshroom.brickery.Main;
@@ -21,3 +22,4 @@ public class ItemCustomFood extends ItemFood implements IHasModel {
         Main.proxy.registerItemRenderer(this, 0, "inventory");
     }
 }
+*/

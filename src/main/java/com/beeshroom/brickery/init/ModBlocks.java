@@ -16,12 +16,23 @@ public class ModBlocks {
 
     public static final List<Block> BLOCKS = new ArrayList<>();
 
+    //bricks and cobble and stone
     public static final Block BLOCKMOSSYBRICKS = new BlockBase("mossy_bricks", Material.ROCK);
     public static final Block BLOCKCRACKEDBRICKS = new BlockBase("cracked_bricks", Material.ROCK);
-    public static final Block BLOCKMIXEDCOBBLE = new BlockBase("mixed_cobble", Material.ROCK);
-    public static final Block BLOCK_BRICK_TILE = new BlockBase("brick_tile", Material.ROCK);
     public static final Block BLOCK_DIRTY_BRICKS = new BlockBase("dirty_bricks", Material.ROCK);
+    public static final Block BLOCK_BRICK_TILE = new BlockBase("brick_tile", Material.ROCK);
+    public static final Block BRICK_PATH = new BlockBase("brick_path", Material.ROCK);
+    public static final Block BLOCKMIXEDCOBBLE = new BlockBase("mixed_cobble", Material.ROCK);
+    public static final Block TERRACOTTA_BRICK = new BlockBase("terracotta_brick", Material.ROCK);
 
+    //furnace
+    public static final Block BRICKFURNACE = new BlockBase("brick_furnace", Material.ROCK);
+
+    public static final Block LIT_BRICKFURNACE = new BlockBase("lit_brick_furnace", Material.ROCK);
+
+    
+    
+    //terracotta and fancy planks
     public static Block[] TERRACOTTA_BRICKS = new Block[16];
     public static Block[] FANCY_PLANKS = new Block[6];
 

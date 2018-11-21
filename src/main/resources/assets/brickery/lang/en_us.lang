@@ -2,13 +2,13 @@
 item.oat.name=Oats
 itemGroup.brickery=Brickery
 
-
 //Blocks
 tile.mossy_bricks.name=Mossy Bricks
 tile.cracked_bricks.name=Cracked Bricks
 tile.mixed_cobble.name=Mixed Cobble
 tile.brick_tile.name=Brick Tile
 tile.dirty_bricks.name=Weathered Bricks
+tile.brick_path.name=Brick Path
 
 //terracotta bricks
 tile.terracotta_brick.name=Terracotta Tile
@@ -24,7 +24,7 @@ tile.purple_terracotta_brick.name=Purple Terracotta Tile
 tile.magenta_terracotta_brick.name=Magenta Terracotta Tile
 tile.pink_terracotta_brick.name=Pink Terracotta Tile
 tile.white_terracotta_brick.name=White Terracotta Tile
-tile.silver_terracotta_brick.name=Silver Terracotta Tile
+tile.silver_terracotta_brick.name=Light Gray Terracotta Tile
 tile.gray_terracotta_brick.name=Gray Terracotta Tile
 tile.black_terracotta_brick.name=Black Terracotta Tile
 tile.brown_terracotta_brick.name=Brown Terracotta Tile
@@ -36,3 +36,6 @@ tile.fancy_birch_planks.name=Birch Flooring
 tile.fancy_jungle_planks.name=Jungle Flooring
 tile.fancy_spruce_planks.name=Spruce Flooring
 tile.fancy_acacia_planks.name=Acacia Flooring
+
+//brick furnace
+tile.brick_furnace.name= Brick Furnace

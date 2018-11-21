@@ -24,7 +24,7 @@ public class BlockBase extends Block {
     }
 
     public Block register(String name) {
-        setTranslationKey(name);
+    	   setTranslationKey(name);
         setRegistryName(Reference.MOD_ID, name);
         ForgeRegistries.BLOCKS.register(this);
         ForgeRegistries.ITEMS.register(new ItemBlock(this).setRegistryName(Reference.MOD_ID, name));

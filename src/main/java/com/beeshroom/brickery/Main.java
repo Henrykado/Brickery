@@ -15,10 +15,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
 public class Main {
-
-    public static final CreativeTabs CREATIVE_TAB = new BricksTab("brickery");
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
-    public static CommonProxy proxy;
+	
+	@Instance
+    public static Main instance;
 
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
@@ -34,5 +33,10 @@ public class Main {
     public static void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
     }
+	
+	   public static final CreativeTabs CREATIVE_TAB = new BricksTab("brickery");
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
+    public static CommonProxy proxy;
+
 
 }
