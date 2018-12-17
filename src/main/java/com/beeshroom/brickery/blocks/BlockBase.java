@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class BlockBase extends Block {
+public class BlockBase extends Block implements IHasModel{ //added implements i has model
 
     public BlockBase(String name, Material material) {
         super(material);
@@ -31,5 +31,14 @@ public class BlockBase extends Block {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(new ResourceLocation(Reference.MOD_ID, name), "inventory"));
         return this;
     }
+    
+    //just added this
+    @Override
+	public void registerModels()
+	{
+
+		Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+	}
+
 
 }

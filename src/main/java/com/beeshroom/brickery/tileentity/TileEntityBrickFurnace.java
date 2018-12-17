@@ -1,6 +1,8 @@
 package com.beeshroom.brickery.tileentity;
 
 
+import com.beeshroom.brickery.blocks.BlockBrickFurnace;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
@@ -153,7 +155,7 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
      */
     public String getName()
     {
-        return this.hasCustomName() ? this.furnaceCustomName : "container.furnace";
+        return this.hasCustomName() ? this.furnaceCustomName : "container.brickfurnace";
     }
 
     /**
@@ -306,7 +308,7 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
             if (flag != this.isBurning())
             {
                 flag1 = true;
-                BlockFurnace.setState(this.isBurning(), this.world, this.pos);
+                BlockBrickFurnace.setState(this.isBurning(), this.world, this.pos);
             }
         }
 
@@ -315,10 +317,11 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
             this.markDirty();
         }
     }
-
+    
+//set speed!! Reducing = faster!!
     public int getCookTime(ItemStack stack)
     {
-        return 200;
+        return 150;
     }
 
     /**
@@ -581,7 +584,8 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
 
     public String getGuiID()
     {
-        return "brickery:brick_furnace";
+    	  return "minecraft:furnace";
+        //return "brickery:brick_furnace";
     }
 
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)

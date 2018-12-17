@@ -47,6 +47,7 @@ public class BlockBrickFurnace extends BlockContainer
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.isBurning = isBurning;
     }
+    
 
     /**
      * Get the Item that this Block should drop when harvested.
