@@ -2,8 +2,11 @@ package com.beeshroom.brickery.blocks;
 
 import java.util.Random;
 
+import com.beeshroom.brickery.Main;
 import com.beeshroom.brickery.init.ModBlocks;
+import com.beeshroom.brickery.init.ModItems;
 import com.beeshroom.brickery.tileentity.TileEntityBrickFurnace;
+import com.beeshroom.brickery.util.IHasModel;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -19,6 +22,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
@@ -35,18 +39,30 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockBrickFurnace extends BlockContainer
+public class BlockBrickFurnace extends BlockContainer implements IHasModel
 {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     private final boolean isBurning;
     private static boolean keepInventory;
 
-    protected BlockBrickFurnace(boolean isBurning)
-    {
-        super(Material.ROCK);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        this.isBurning = isBurning;
-    }
+	public BlockBrickFurnace(String name, boolean isBurning, boolean state)
+	{
+		super(Material.ROCK);
+		this.setHardness(3.5F);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+	
+		this.isBurning = isBurning;
+		
+		float light = isBurning ? 0.75F : 0;
+		
+		setLightLevel(light);
+		
+		setTranslationKey(name);
+		setRegistryName(name);
+		
+		ModBlocks.BLOCKS.add(this);
+		ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+	}
     
 
     /**
@@ -54,7 +70,7 @@ public class BlockBrickFurnace extends BlockContainer
      */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(ModBlocks.BRICKFURNACE);
+        return Item.getItemFromBlock(ModBlocks.BRICK_FURNACE);
     }
 
     /**
@@ -171,13 +187,13 @@ public class BlockBrickFurnace extends BlockContainer
 
         if (active)
         {
-            worldIn.setBlockState(pos, ModBlocks.LIT_BRICKFURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.LIT_BRICKFURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.BRICK_FURNACE_LIT.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.BRICK_FURNACE_LIT.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
         else
         {
-            worldIn.setBlockState(pos, ModBlocks.BRICKFURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.BRICKFURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.BRICK_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.BRICK_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
 
         keepInventory = false;
@@ -263,7 +279,7 @@ public class BlockBrickFurnace extends BlockContainer
 
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
     {
-        return new ItemStack(ModBlocks.BRICKFURNACE);
+        return new ItemStack(ModBlocks.BRICK_FURNACE);
     }
 
     /**
@@ -324,4 +340,15 @@ public class BlockBrickFurnace extends BlockContainer
     {
         return new BlockStateContainer(this, new IProperty[] {FACING});
     }
+
+
+    @Override
+	public int tickRate(World world) {
+		return 1;
+	}
+
+    @Override
+	public void registerModels() {
+    		Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+	} 
 }

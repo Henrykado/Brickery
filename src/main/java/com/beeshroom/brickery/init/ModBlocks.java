@@ -1,15 +1,20 @@
 package com.beeshroom.brickery.init;
 
-import com.beeshroom.brickery.blocks.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.beeshroom.brickery.blocks.BlockBase;
+import com.beeshroom.brickery.blocks.BlockBrickFurnace;
+import com.beeshroom.brickery.blocks.BlockFancyPlanks;
+import com.beeshroom.brickery.blocks.BlockTerracottaBrick;
+import com.beeshroom.brickery.blocks.EnumFancyPlanks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod.EventBusSubscriber
 public class ModBlocks {
@@ -26,11 +31,10 @@ public class ModBlocks {
     public static final Block TERRACOTTA_BRICK = new BlockBase("terracotta_brick", Material.ROCK);
 
     //furnace
-    public static final Block BRICKFURNACE = new BlockBase("brick_furnace", Material.ROCK);
+	public static final Block BRICK_FURNACE = new BlockBase("brick_furnace", Material.ROCK);
 
-    public static final Block LIT_BRICKFURNACE = new BlockBase("lit_brick_furnace", Material.ROCK);
+	public static final Block BRICK_FURNACE_LIT = new BlockBase("brick_furnace_lit", Material.ROCK);
 
-    
     
     //terracotta and fancy planks
     public static Block[] TERRACOTTA_BRICKS = new Block[16];
