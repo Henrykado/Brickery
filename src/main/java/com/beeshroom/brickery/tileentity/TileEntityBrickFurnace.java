@@ -53,8 +53,7 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
 		  private int cookTime;
 		  private int totalCookTime;
 		  private String furnaceCustomName;
-		  private boolean isWater;
-		  private boolean boil;
+		 
 		  /**
 		   * Returns the number of slots in the inventory.
 		   */
@@ -127,6 +126,9 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
 		    }
 		  }
 
+		  //EDITED THIS TO SAY BRICK FURNACE.... I HOPE THIS WORKS... IF NOT, GOOD THING I WROTE THIS ANNOTATION
+		  //HERE SO I CAN EASILY FIND IT IF EVERYTHING BREAKS ahahahah
+		  
 		  @Override
 		  public String getName()
 		  {
@@ -267,41 +269,36 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
 		        }
 		      }
 		      else if (!this.isBurning() && this.cookTime > 0)
-		      {
-		        this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.totalCookTime);
-		      }
+	            {
+	                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.totalCookTime);
+	            }
 
-		      if (flag != this.isBurning())
-		      {
-		        flag1 = true;
-		        BlockBrickFurnace.setState(this.isBurning(), this.world, this.pos);
-		      }
-		      int i = pos.getX();int j = pos.getY();int k = pos.getZ();
-		      
-		      if(world.getBlockState(new BlockPos(i + 1, j, k)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(i, j, k + 1)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(i + 1, j, k + 1)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(i - 1, j, k)).getBlock() == Blocks.WATER 
-		    		  || world.getBlockState(new BlockPos(i, j, k - 1)).getBlock() == Blocks.WATER){
-		    	  isWater = true;
-		    	  boil = true;
-		      }else {
-		    	  isWater = false;
-		    	  boil = false;
-		      }
-		    } 
+	            if (flag != this.isBurning())
+	            {
+	                flag1 = true;
+	                BlockFurnace.setState(this.isBurning(), this.world, this.pos);
+	            }
+	        }
 
-		    if (flag1)
-		    {
-		      this.markDirty();
-		    }
-		  }
+	        if (flag1)
+	        {
+	            this.markDirty();
+	        }
+	    }
 		  
-		   
-		  //= world.containsAnyLiquid(BOUNDS);
 		  
-		  public int getCookTime(ItemStack stack)
-		  {
-		     return isWater ? 125 : 200;
-		  }
+		  
 
+		  //CHANGE THIS TO CHANGE COOK SPEED
+		  
+	    public int getCookTime(ItemStack stack)
+	    {
+	        return 260;
+	    }
+
+	    
+	    
+	    
 		  /**
 		   * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
 		   */

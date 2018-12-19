@@ -31,10 +31,9 @@ public class ModBlocks {
     public static final Block TERRACOTTA_BRICK = new BlockBase("terracotta_brick", Material.ROCK);
 
     //furnace
-	public static final Block BRICK_FURNACE = new BlockBase("brick_furnace", Material.ROCK);
-
-	public static final Block BRICK_FURNACE_LIT = new BlockBase("brick_furnace_lit", Material.ROCK);
-
+    public static final Block BRICK_FURNACE = new BlockBrickFurnace("brick_furnace", false, true);
+	public static final Block BRICK_FURNACE_LIT = new BlockBrickFurnace("brick_furnace_lit", true, false);
+	
     
     //terracotta and fancy planks
     public static Block[] TERRACOTTA_BRICKS = new Block[16];

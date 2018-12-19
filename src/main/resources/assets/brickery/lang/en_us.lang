@@ -38,5 +38,6 @@ tile.fancy_spruce_planks.name=Spruce Flooring
 tile.fancy_acacia_planks.name=Acacia Flooring
 
 //brick furnace
-tile.brick_furnace.name= Brick Furnace
-container.brickfurnace.name= Brick Furnace
+tile.brick_furnace.name=Brick Furnace
+container.brickfurnace.name=Brick Furnace
+
