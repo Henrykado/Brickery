@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class BlockBase extends Block implements IHasModel{ //added implements i has model
+public class BlockBase extends Block {
 
     public BlockBase(String name, Material material) {
         super(material);
@@ -24,21 +24,12 @@ public class BlockBase extends Block implements IHasModel{ //added implements i 
     }
 
     public Block register(String name) {
-    	   setTranslationKey(name);
+    	setTranslationKey(name);
         setRegistryName(Reference.MOD_ID, name);
         ForgeRegistries.BLOCKS.register(this);
         ForgeRegistries.ITEMS.register(new ItemBlock(this).setRegistryName(Reference.MOD_ID, name));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(new ResourceLocation(Reference.MOD_ID, name), "inventory"));
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
         return this;
     }
-    
-    //just added this
-    @Override
-	public void registerModels()
-	{
-
-		Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
-	}
-
 
 }

@@ -1,17 +1,17 @@
 package com.beeshroom.brickery.blocks;
 
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
+
+import com.beeshroom.brickery.util.handlers.ConfigHandler;
 
 public class BlockFancyPlanks extends BlockBase {
 
@@ -40,7 +40,7 @@ public class BlockFancyPlanks extends BlockBase {
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        tooltip.add(type);
+        if (ConfigHandler.TOOLTIPS) tooltip.add(type);
     }
 
 }

@@ -1,12 +1,15 @@
 package com.beeshroom.brickery.blocks;
 
 import java.util.Random;
+import java.util.logging.Logger;
 
 import com.beeshroom.brickery.Main;
 import com.beeshroom.brickery.init.ModBlocks;
 import com.beeshroom.brickery.init.ModItems;
 import com.beeshroom.brickery.tileentity.TileEntityBrickFurnace;
 import com.beeshroom.brickery.util.IHasModel;
+import com.beeshroom.brickery.util.Reference;
+import com.beeshroom.brickery.util.handlers.ConfigHandler;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -45,27 +48,26 @@ public class BlockBrickFurnace extends BlockContainer implements IHasModel
 		public static final PropertyDirection FACING = BlockHorizontal.FACING;
 		private final boolean isBurning;
 		private static boolean keepInventory;
-		private boolean states;
 		
 		public BlockBrickFurnace(String name, boolean isBurning, boolean state)
 		{
 			super(Material.ROCK);
 			this.setHardness(3.5F);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-			states = state;
 			this.isBurning = isBurning;
 			
-			setCreativeTab(Main.CREATIVE_TAB);
+			if (!isBurning) setCreativeTab(Main.CREATIVE_TAB);
 			
 			float light = isBurning ? 0.75F : 0;
-			
 			setLightLevel(light);
 			
 			setTranslationKey(name);
 			setRegistryName(name);
 			
-			ModBlocks.BLOCKS.add(this);
-			ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+			if (ConfigHandler.BRICK_FURNACE) {
+				ModBlocks.BLOCKS.add(this);
+				ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+			}
 		}
 		
 		@Override
@@ -134,7 +136,7 @@ public class BlockBrickFurnace extends BlockContainer implements IHasModel
 	            double d0 = (double)pos.getX() + 0.5D;
 	            double d1 = (double)pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
 	            double d2 = (double)pos.getZ() + 0.5D;
-	            double d3 = 0.52D;
+	            //double d3 = 0.52D;
 	            double d4 = rand.nextDouble() * 0.6D - 0.3D;
 
 	            if (rand.nextDouble() < 0.1D)
@@ -171,6 +173,7 @@ public class BlockBrickFurnace extends BlockContainer implements IHasModel
 
 	    	world.scheduleUpdate(new BlockPos(i, j, k), this, this.tickRate(world));
 	    }
+	    
 	    /**
 	     * Called when the block is right clicked by a player.
 	     */

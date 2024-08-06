@@ -1,7 +1,9 @@
 package com.beeshroom.brickery.tileentity;
 
+import java.util.logging.Logger;
 
 import com.beeshroom.brickery.blocks.BlockBrickFurnace;
+import com.beeshroom.brickery.util.Reference;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
@@ -34,7 +36,6 @@ import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraft.util.datafix.walkers.ItemStackDataLists;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -125,15 +126,13 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
 		      this.markDirty();
 		    }
 		  }
-
-		  //EDITED THIS TO SAY BRICK FURNACE.... I HOPE THIS WORKS... IF NOT, GOOD THING I WROTE THIS ANNOTATION
-		  //HERE SO I CAN EASILY FIND IT IF EVERYTHING BREAKS ahahahah
 		  
 		  @Override
 		  public String getName()
 		  {
-		    return this.hasCustomName() ? this.furnaceCustomName : "container.furnace";
+		    return this.hasCustomName() ? this.furnaceCustomName : "container.brickfurnace";
 		  }
+		  
 		  @Override
 		  public boolean hasCustomName()
 		  {
@@ -276,7 +275,7 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
 	            if (flag != this.isBurning())
 	            {
 	                flag1 = true;
-	                BlockFurnace.setState(this.isBurning(), this.world, this.pos);
+	                BlockBrickFurnace.setState(this.isBurning(), this.world, this.pos);
 	            }
 	        }
 
@@ -293,7 +292,7 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
 		  
 	    public int getCookTime(ItemStack stack)
 	    {
-	        return 260;
+	        return 160; // 1 coal = 10 items (with the longer fuel times [set in getItemBurnTime], 12)
 	    }
 
 	    
@@ -375,99 +374,7 @@ public class TileEntityBrickFurnace extends TileEntityLockable implements ITicka
 		   */
 		    public static int getItemBurnTime(ItemStack stack)
 		    {
-		        if (stack.isEmpty())
-		        {
-		            return 0;
-		        }
-		        else
-		        {
-		            int burnTime = net.minecraftforge.event.ForgeEventFactory.getItemBurnTime(stack);
-		            if (burnTime >= 0) return burnTime;
-		            Item item = stack.getItem();
-
-		            if (item == Item.getItemFromBlock(Blocks.WOODEN_SLAB))
-		            {
-		                return 150;
-		            }
-		            else if (item == Item.getItemFromBlock(Blocks.WOOL))
-		            {
-		                return 100;
-		            }
-		            else if (item == Item.getItemFromBlock(Blocks.CARPET))
-		            {
-		                return 67;
-		            }
-		            else if (item == Item.getItemFromBlock(Blocks.LADDER))
-		            {
-		                return 300;
-		            }
-		            else if (item == Item.getItemFromBlock(Blocks.WOODEN_BUTTON))
-		            {
-		                return 100;
-		            }
-		            else if (Block.getBlockFromItem(item).getDefaultState().getMaterial() == Material.WOOD)
-		            {
-		                return 300;
-		            }
-		            else if (item == Item.getItemFromBlock(Blocks.COAL_BLOCK))
-		            {
-		                return 16000;
-		            }
-		            else if (item instanceof ItemTool && "WOOD".equals(((ItemTool)item).getToolMaterialName()))
-		            {
-		                return 200;
-		            }
-		            else if (item instanceof ItemSword && "WOOD".equals(((ItemSword)item).getToolMaterialName()))
-		            {
-		                return 200;
-		            }
-		            else if (item instanceof ItemHoe && "WOOD".equals(((ItemHoe)item).getMaterialName()))
-		            {
-		                return 200;
-		            }
-		            else if (item == Items.STICK)
-		            {
-		                return 100;
-		            }
-		            else if (item != Items.BOW && item != Items.FISHING_ROD)
-		            {
-		                if (item == Items.SIGN)
-		                {
-		                    return 200;
-		                }
-		                else if (item == Items.COAL)
-		                {
-		                    return 1600;
-		                }
-		                else if (item == Items.LAVA_BUCKET)
-		                {
-		                    return 20000;
-		                }
-		                else if (item != Item.getItemFromBlock(Blocks.SAPLING) && item != Items.BOWL)
-		                {
-		                    if (item == Items.BLAZE_ROD)
-		                    {
-		                        return 2400;
-		                    }
-		                    else if (item instanceof ItemDoor && item != Items.IRON_DOOR)
-		                    {
-		                        return 200;
-		                    }
-		                    else
-		                    {
-		                        return item instanceof ItemBoat ? 400 : 0;
-		                    }
-		                }
-		                else
-		                {
-		                    return 100;
-		                }
-		            }
-		            else
-		            {
-		                return 300;
-		            }
-		        }
+		    	return (int)(TileEntityFurnace.getItemBurnTime(stack) * 1.2);
 		    }
 
 		  public static boolean isItemFuel(ItemStack stack)

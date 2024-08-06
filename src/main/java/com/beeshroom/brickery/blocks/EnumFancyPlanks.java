@@ -5,12 +5,12 @@ import net.minecraft.util.IStringSerializable;
 
 public enum EnumFancyPlanks implements IStringSerializable {
 
-    OAK(0, "oak", "parquet"),
-    SPRUCE(1, "spruce", "basket-weave"),
-    BIRCH(2, "birch", "checkered"),
-    JUNGLE(3, "jungle", "diagonal"),
-    ACACIA(4, "acacia", "herringbone"),
-    DARK_OAK(5, "dark_oak", "laminate");
+    OAK(0, "oak", "Parquet"),
+    SPRUCE(1, "spruce", "Basket-weave"),
+    BIRCH(2, "birch", "Checkered"),
+    JUNGLE(3, "jungle", "Diagonal"),
+    ACACIA(4, "acacia", "Herringbone"),
+    DARK_OAK(5, "dark_oak", "Laminate");
 
     public String name, type;
     public int ID;
